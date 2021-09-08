@@ -49,7 +49,7 @@ public class TodoController {
 		repository.deleteById(id);
 	}
 	
-	@CrossOrigin
+	@CrossOrigin("*")
 	@PatchMapping("{id}/done ")
 	public Todo markAsDone(@PathVariable Long id) {
 		return repository.findById(id).map(todo -> {
