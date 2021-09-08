@@ -19,9 +19,11 @@ import org.springframework.web.server.ResponseStatusException;
 import io.github.cursodsousa.todo.model.Todo;
 import io.github.cursodsousa.todo.repository.TodoRepository;
 
-@CrossOrigin(origins = "http://domain2.com", maxAge = 3600)
+
+
 @RestController
 @RequestMapping("/api/todos")
+@CrossOrigin("*")
 public class TodoController {
 	
 	@Autowired
