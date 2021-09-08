@@ -3,6 +3,8 @@ package io.github.cursodsousa.todo.rest;
 import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,13 +16,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
-
 import io.github.cursodsousa.todo.model.Todo;
 import io.github.cursodsousa.todo.repository.TodoRepository;
 
+@CrossOrigin(origins = "http://domain2.com", maxAge = 3600)
 @RestController
 @RequestMapping("/api/todos")
-@CrossOrigin("*")
 public class TodoController {
 	
 	@Autowired
@@ -49,7 +50,7 @@ public class TodoController {
 		repository.deleteById(id);
 	}
 	
-	@CrossOrigin("*")
+	@CrossOrigin
 	@PatchMapping("{id}/done ")
 	public Todo markAsDone(@PathVariable Long id) {
 		return repository.findById(id).map(todo -> {
